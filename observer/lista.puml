@@ -1,0 +1,33 @@
+@startuml 
+hide empty members
+
+    object "NULL" as N1
+    map UpperCase {
+        previous_client =>
+        next_client =>
+    }
+    map LowerCase {
+        previous_client =>
+        next_client =>
+    }
+    map Digits {
+        previous_client =>
+        next_client =>
+    }
+    object "NULL" as N2
+
+    UpperCase::previous_client -u-> N1
+    UpperCase::next_client --> LowerCase
+
+    LowerCase::previous_client --> UpperCase
+    LowerCase::next_client --> Digits
+
+    Digits::previous_client --> LowerCase
+    Digits::next_client --> N2
+
+    object keyboard {
+        clients        
+    }
+    keyboard::clients -r-> UpperCase
+
+@enduml

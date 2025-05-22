@@ -1,0 +1,41 @@
+@startuml Example of Observer Pattern
+set separator none
+hide empty members
+
+package keyboard.h {
+    struct client_s {
+        -from_char;
+        -to_char;
+        -previous_client;
+        -next_client;
+        -EventHandler();
+    }
+    client_s *-d- keyboard_t
+
+    class keyboard_t {
+        -clients
+        -Find()
+        +Create()
+        +Subscribe()
+        +Remove()
+        +Tick()
+    }
+    interface keyboard_event_t {
+    }
+    keyboard_t o-d- keyboard_event_t
+}
+
+package main.c {
+    protocol UperCase {
+    }
+    UperCase .u.|> keyboard_event_t
+
+    protocol LowerCase{
+    }
+    LowerCase .u.|> keyboard_event_t
+
+    protocol Digits {
+    }
+    Digits .u.|> keyboard_event_t
+}
+@enduml
