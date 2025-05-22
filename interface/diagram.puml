@@ -1,0 +1,46 @@
+@startuml
+set separator none
+hide empty members
+
+package logger.h {
+    interface log_stream_t {
+        +LogStreamOpen()
+        +LogStreamWrite()
+    }
+
+    enum log_level_t {
+        DEBUG
+        INFO
+        WARNING
+        ERROR
+    }
+
+    class logger_t {
+        +Create()
+        +Register()
+    }
+
+    class LOG_STREAM_FILE {
+        -LogStreamFileOpen()
+        -LogStreamFileWrite()
+        +LogStreamOpen()
+        +LogStreamWrite()
+    }
+    log_level_t <-d- logger_t
+    logger_t -l-> log_stream_t
+
+    LOG_STREAM_FILE ..|> log_stream_t
+
+}
+
+package main.c {
+    class LOG_STREAM_CONSOLE {
+        -LogStreamConsoleOpen()
+        -LogStreamConsoleWrite()
+        +LogStreamOpen()
+        +LogStreamWrite()
+    }
+    LOG_STREAM_CONSOLE ..|> log_stream_t
+    LOG_STREAM_CONSOLE -l-> LOG_STREAM_FILE
+}
+@enduml
