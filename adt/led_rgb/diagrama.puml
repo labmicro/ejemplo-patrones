@@ -1,0 +1,42 @@
+@startuml Example of ADT Pattern
+set separator none
+hide empty members
+
+package pin.h {
+    class pin_pwm_t {
+        -port
+        -pin
+        -value
+        +CreatePwm()
+        +SetPwm()
+        +GetPwm()
+    }
+}
+
+package rgb.h {
+    struct color_s {
+        +red
+        +green
+        +blue
+    }
+
+    class rgb_led_t {
+        -red
+        -green
+        -blue
+        -color
+        -intensity
+        -turned_on
+        -UpdatePwm()
+        +Create()
+        +SetColor()
+        +GetColor()
+        +SetIntensity()
+        +GetIntensity()
+        +TurnOn()
+        +TurnOff()
+    }
+    rgb_led_t o-d- pin_pwm_t
+    rgb_led_t *-u- color_s
+}
+@enduml

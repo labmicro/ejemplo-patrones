@@ -1,0 +1,15 @@
+@startuml Example of ADT Pattern
+set separator none
+hide empty members
+
+package gpio.h {
+    class gpio_t {
+        -port
+        -pin
+        -output
+        +Create()
+        +SetState()
+        +GetState()
+    }
+}
+@enduml

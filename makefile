@@ -1,5 +1,6 @@
 # Ejemplo a compilar, por ejemplo:
-#   observador/lista, observador/vector, interface/basico, interface/data, eventos/basico, estrategia
+#   observador/lista, observador/vector, interface/basico, interface/data, eventos/basico, estrategia,
+#   adt/gpio/estructurado, adt/gpio/objeto, adt/gpio/invertido, adt/led_rgb
 EXAMPLE ?= interface/basico
 SRC_DIR = ./$(EXAMPLE)
 OBJ_DIR = ./build
