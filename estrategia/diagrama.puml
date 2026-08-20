@@ -1,0 +1,37 @@
+@startuml Example of Strategy Pattern
+set separator none
+hide empty members
+
+package calculator.h {
+    class calculator_t {
+        -operations
+        -Find()
+        +Create()
+        +Add()
+        +Calculate()
+    }
+    struct operation_s {
+        -symbol
+        -next
+        -Function()
+    }
+    interface calculator_operation_t {
+    }
+    calculator_t *-u- operation_s
+    calculator_t o-d- calculator_operation_t
+}
+
+package main.c {
+    protocol Add {
+    }
+    Add .u.|> calculator_operation_t
+
+    protocol Subtract {
+    }
+    Subtract .u.|> calculator_operation_t
+
+    protocol Multiply {
+    }
+    Multiply .u.|> calculator_operation_t
+}
+@enduml

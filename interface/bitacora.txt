@@ -1,2 +1,0 @@
-INFO:Mensaje de información
-INFO:Mensaje de información

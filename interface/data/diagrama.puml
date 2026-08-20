@@ -1,0 +1,55 @@
+@startuml Example of Interface Pattern with Data
+set separator none
+hide empty members
+
+package led.h {
+    class led_t {
+        -digital_output
+        -data
+        +Create()
+        +TurnOn()
+        +TurnOff()
+        +Toggle()
+        +IsOn()
+    }
+    interface digital_output_interface_t {
+        GetState()
+        SetState()
+    }
+    led_t o-d- digital_output_interface_t
+}
+
+package gpio.h {
+    class gpio_t {
+        -port
+        -pin
+        -output
+        +Create()
+        +SetState()
+        +GetState()
+    }
+}
+
+package main.c {
+    protocol I2C_EXPANDER {
+        I2cGetState()
+        I2cSetState()
+    }
+    I2C_EXPANDER .u.|> digital_output_interface_t
+
+    protocol GPIO_BASE {
+        GpioGetState()
+        GpioSetState()
+    }
+    GPIO_BASE .u.|> digital_output_interface_t
+
+    struct i2c_t {
+        -address
+        -reg
+        -bit
+    }
+}
+
+GPIO_BASE -u-> gpio_t
+I2C_EXPANDER -r-> i2c_t
+@enduml
